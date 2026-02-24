@@ -6,7 +6,7 @@ import ProjectModal from "../components/ProjectModal";
 import PageLayout from "../components/PageLayout";
 
 export default function Home() {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
