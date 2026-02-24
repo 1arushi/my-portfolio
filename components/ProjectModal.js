@@ -702,6 +702,111 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
               );
             }
 
+            // Cisco: intro full-width, then all project sections with photos stacked on the left
+            if (project.id === "cisco" && project.caseStudy) {
+              const sections = project.caseStudy.split(/(?=\nproject \d —)/);
+              const intro = sections[0].trim();
+              const projectSections = sections.slice(1);
+
+              const introLines = intro.split("\n");
+
+              return (
+                <>
+                  <div className="border-t border-gray-200 my-6"></div>
+                  <div>
+                    <p className="text-xs text-gray-400 mb-2 lowercase">overview</p>
+                    <div className="text-sm text-gray-900 leading-relaxed lowercase font-sans space-y-1 mb-6">
+                      {introLines.map((line, i) => {
+                        const trimmed = line.trim();
+                        if (!trimmed) return <div key={i} className="h-2" />;
+                        return (
+                          <p key={i} className="text-sm text-gray-900 font-normal leading-relaxed lowercase whitespace-pre-line">
+                            {renderParagraphWithBold(trimmed)}
+                          </p>
+                        );
+                      })}
+                    </div>
+                    <div className="grid grid-cols-[160px_1fr] gap-8 items-stretch">
+                      <div className="flex flex-col gap-3 pt-6 h-full">
+                        <img
+                          src="/images/cisco-photo1.png"
+                          alt={`${project.name} photo 1`}
+                          className="w-full flex-1 min-h-0 rounded-2xl object-cover"
+                        />
+                        <img
+                          src="/images/cisco-photo2.png"
+                          alt={`${project.name} photo 2`}
+                          className="w-full flex-1 min-h-0 rounded-2xl object-cover"
+                        />
+                      </div>
+                      <div className="text-sm text-gray-900 leading-relaxed lowercase font-sans space-y-1">
+                        {projectSections.map((section, idx) => {
+                          const hasContent = section && section.trim().length > 0;
+                          if (!hasContent) return null;
+                          return <div key={idx}>{renderSectionText(section)}</div>;
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            }
+
+            // DevX: intro full-width, then all project sections with photos stacked on the left
+            if (project.id === "devx" && project.caseStudy) {
+              const sections = project.caseStudy.split(/(?=\nproject \d —)/);
+              const intro = sections[0].trim();
+              const projectSections = sections.slice(1);
+
+              const introLines = intro.split("\n");
+
+              return (
+                <>
+                  <div className="border-t border-gray-200 my-6"></div>
+                  <div>
+                    <p className="text-xs text-gray-400 mb-2 lowercase">overview</p>
+                    <div className="text-sm text-gray-900 leading-relaxed lowercase font-sans space-y-1 mb-6">
+                      {introLines.map((line, i) => {
+                        const trimmed = line.trim();
+                        if (!trimmed) return <div key={i} className="h-2" />;
+                        return (
+                          <p key={i} className="text-sm text-gray-900 font-normal leading-relaxed lowercase whitespace-pre-line">
+                            {renderParagraphWithBold(trimmed)}
+                          </p>
+                        );
+                      })}
+                    </div>
+                    <div className="grid grid-cols-[100px_1fr] gap-8 items-stretch">
+                      <div className="flex flex-col gap-3 pt-6 h-full">
+                        <img
+                          src="/images/devx-photo3.jpeg"
+                          alt={`${project.name} photo 1`}
+                          className="w-full flex-1 min-h-0 rounded-2xl object-cover"
+                        />
+                        <img
+                          src="/images/devx-photo1.jpg"
+                          alt={`${project.name} photo 2`}
+                          className="w-full flex-1 min-h-0 rounded-2xl object-cover"
+                        />
+                        <img
+                          src="/images/devx-photo2.png"
+                          alt={`${project.name} photo 3`}
+                          className="w-full flex-1 min-h-0 rounded-2xl object-cover"
+                        />
+                      </div>
+                      <div className="text-sm text-gray-900 leading-relaxed lowercase font-sans space-y-1">
+                        {projectSections.map((section, idx) => {
+                          const hasContent = section && section.trim().length > 0;
+                          if (!hasContent) return null;
+                          return <div key={idx}>{renderSectionText(section)}</div>;
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            }
+
             // Default: single-column case study
             const lines = project.caseStudy.split("\n");
             return (
