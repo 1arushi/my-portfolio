@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { projects } from "../data/projects";
+import { useState, useEffect } from "react";
+import { projects } from "@/data/projects";
 import ProjectModal from "../components/ProjectModal";
 import PageLayout from "../components/PageLayout";
 
@@ -9,6 +9,7 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [nextProjects, setNextProjects] = useState<(typeof projects)>([]);
 
   const handleCardClick = (project: (typeof projects)[0]) => {
     setSelectedProject(project);
@@ -27,10 +28,14 @@ export default function Home() {
   const currentIndex = selectedProject
     ? projects.findIndex((p) => p.id === selectedProject.id)
     : -1;
-  const nextProjects =
-    currentIndex >= 0
-      ? [1, 2].map((offset) => projects[(currentIndex + offset) % projects.length])
-      : [];
+
+  useEffect(() => {
+    setNextProjects(
+      currentIndex >= 0
+        ? [1, 2].map((offset) => projects[(currentIndex + offset) % projects.length])
+        : []
+    );
+  }, [currentIndex]);
 
   return (
     <>
