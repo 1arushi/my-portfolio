@@ -69,7 +69,7 @@ export default function CreativePage() {
             human, and helps me hold onto what makes me unique and special as a person.
           </p>
 
-          <div className="bg-white rounded-3xl shadow-sm p-8 py-10">
+          <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 py-10">
             <div className="flex items-center justify-between w-full">
               <h1 className="text-xl font-normal text-gray-400 lowercase">@chugofmatcha</h1>
               <div className="flex gap-3 items-center">
