@@ -156,7 +156,7 @@ export default function CreativePage() {
                           backgroundPosition: "center",
                         }}
                       >
-                        <p className="absolute bottom-3 left-4"><span className="bg-[#D9D9D9]/50 px-3 py-1 rounded-full text-xs text-white lowercase">{card.label}</span></p>
+                        <p className="absolute bottom-3 left-4"><span className="bg-[#888888]/60 px-3 py-1 rounded-full text-xs text-white lowercase">{card.label}</span></p>
                       </div>
                       <div
                         className="absolute inset-0 bg-white rounded-2xl p-5 flex items-center border border-gray-100"
@@ -198,7 +198,7 @@ export default function CreativePage() {
                           backgroundPosition: "center",
                         }}
                       >
-                        <p className="absolute bottom-3 left-4"><span className="bg-[#D9D9D9]/50 px-3 py-1 rounded-full text-xs text-white lowercase">{card.label}</span></p>
+                        <p className="absolute bottom-3 left-4"><span className="bg-[#888888]/60 px-3 py-1 rounded-full text-xs text-white lowercase">{card.label}</span></p>
                       </div>
                       <div
                         className="absolute inset-0 bg-white rounded-2xl p-5 flex items-center border border-gray-100"
