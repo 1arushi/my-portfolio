@@ -55,7 +55,7 @@ export default function CreativePage() {
       <main className="container mx-auto px-6 py-1 -mt-8 font-sans text-[#434040] lowercase">
         <section className="max-w-4xl mx-auto pt-2 pb-12">
 
-          <h2 className="text-4xl font-normal text-gray-400 lowercase mb-3">why creative?</h2>
+          <h2 className="text-3xl font-normal text-[#717171] lowercase mb-3">why creative?</h2>
           <p className="text-sm text-gray-400 leading-relaxed mb-8">
             i have always been a creative person. paper crafts, origami, stickers, drawing,
             painting, duck tape creations, knitting. but as the world became more technically
