@@ -52,7 +52,7 @@ export default function CreativePage() {
 
   return (
     <PageLayout>
-      <main className="container mx-auto px-6 py-1 font-sans text-[#434040] lowercase">
+      <main className="container mx-auto px-6 py-1 -mt-8 font-sans text-[#434040] lowercase">
         <section className="max-w-4xl mx-auto pt-2 pb-12">
 
           <h2 className="text-4xl font-normal text-gray-400 lowercase mb-3">why creative?</h2>
