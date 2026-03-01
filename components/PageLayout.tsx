@@ -126,6 +126,17 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </div>
+        <p className="text-xs text-[#D9D9D9] text-center mt-6 lowercase">
+          made with{" "}
+          <a href="https://www.instagram.com/chugofmatcha" target="_blank" rel="noopener noreferrer" className="text-[#AEAEAE] hover:text-[#D9D9D9] transition-colors">
+            matcha lattes
+          </a>{" "}
+          &{" "}
+          <a href="https://substack.com/@chugoflife" target="_blank" rel="noopener noreferrer" className="text-[#AEAEAE] hover:text-[#D9D9D9] transition-colors">
+            substack
+          </a>{" "}
+          breaks 🍵⭐️
+        </p>
       </footer>
     </div>
   );
