@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { BarChart, Bar, XAxis, YAxis, Cell, PieChart, Pie, Tooltip, ResponsiveContainer, Legend, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts";
 
 export default function ProjectModal({ project, isOpen, onClose, nextProjects = [], onSelectProject, projects: allProjects = [] }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -63,8 +65,29 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
         </>
       )}
 
-      <div className="bg-white rounded-[40px] shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] flex flex-col overflow-hidden animate-[fadeInScale_0.2s_ease-out]">
-        <div className="p-12 max-h-[60vh] overflow-y-auto">
+      <div
+        className={isExpanded
+          ? "fixed inset-0 z-50 bg-white overflow-y-auto p-12 rounded-none"
+          : "relative bg-white rounded-[40px] shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] flex flex-col overflow-hidden animate-[fadeInScale_0.2s_ease-out]"
+        }
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-10"
+        >
+          {isExpanded ? "↘" : "↖"}
+        </button>
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-10"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <div className={isExpanded ? "p-12 overflow-y-auto" : "p-12 max-h-[60vh] overflow-y-auto"}>
           {/* Company Name */}
           <h2 className="text-3xl font-semibold text-black mb-6 lowercase">
             {project.name}

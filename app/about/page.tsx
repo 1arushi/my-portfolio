@@ -5,6 +5,8 @@ import PageLayout from "../../components/PageLayout";
 
 const CAROUSEL_COUNT = 4;
 
+const PHOTOS = ["/images/about-1.png", "/images/about-2.png", "/images/about-3.png", "/images/about-4.png"];
+
 export default function AboutPage() {
   const [currentPhoto, setCurrentPhoto] = useState(0);
   const [liked, setLiked] = useState(false);
@@ -37,7 +39,7 @@ export default function AboutPage() {
             <div className="relative">
               <div className="relative">
                 <div className="h-80 w-full rounded-none overflow-hidden">
-                  <div className="w-full h-80 bg-gray-200" />
+                  <img src={PHOTOS[currentPhoto]} alt="" className="w-full h-80 object-cover" />
                 </div>
                 <button
                   type="button"
@@ -238,22 +240,54 @@ export default function AboutPage() {
         <section className="max-w-4xl mx-auto pb-16">
           <h2 className="text-3xl font-normal text-[#717171] lowercase mb-3">media i live by</h2>
           <div className="grid grid-cols-3 gap-10 w-full">
-            {[
-              "placeholder 1",
-              "placeholder 2",
-              "placeholder 3",
-              "placeholder 4",
-              "placeholder 5",
-              "placeholder 6",
-            ].map((label) => (
-              <div
-                key={label}
-                className="bg-white rounded-2xl shadow-md border border-gray-200 w-full h-[350px] flex flex-col items-center justify-start pt-6 px-6"
-              >
-                <div className="bg-gray-200 w-[145px] h-[205px] shrink-0" />
-                <p className="mt-4 text-sm text-gray-500 text-center lowercase">{label}</p>
+            <div className="bg-white rounded-2xl shadow-md border border-gray-200 w-full h-[350px] flex flex-col items-center justify-start pt-6 px-6">
+              <img src="/images/media-1.png" alt="" className="w-[145px] h-[205px] object-cover" />
+              <div className="mt-3 text-center px-2">
+                <p className="text-xs text-[#434040] lowercase leading-tight">don't believe everything you think</p>
+                <p className="text-xs text-[#717171] lowercase mt-0.5">joseph nguyen</p>
+                <p className="text-xs text-[#AEAEAE] lowercase mt-2 italic leading-tight px-1">reminds me that happiness is a mindset, makes me more self aware</p>
               </div>
-            ))}
+            </div>
+            <div className="bg-white rounded-2xl shadow-md border border-gray-200 w-full h-[350px] flex flex-col items-center justify-start pt-6 px-6">
+              <img src="/images/media-2.png" alt="" className="w-[145px] h-[205px] object-cover" />
+              <div className="mt-3 text-center px-2">
+                <p className="text-xs text-[#434040] lowercase leading-tight">startup</p>
+                <p className="text-xs text-[#717171] lowercase mt-0.5">show</p>
+                <p className="text-xs text-[#AEAEAE] lowercase mt-2 italic leading-tight px-1">every time i watch it, it makes me feel ambitious and ready to build</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-md border border-gray-200 w-full h-[350px] flex flex-col items-center justify-start pt-6 px-6">
+              <img src="/images/media-3.png" alt="" className="w-[145px] h-[205px] object-cover" />
+              <div className="mt-3 text-center px-2">
+                <p className="text-xs text-[#434040] lowercase leading-tight">anything goes</p>
+                <p className="text-xs text-[#717171] lowercase mt-0.5">emma chamberlain</p>
+                <p className="text-xs text-[#AEAEAE] lowercase mt-2 italic leading-tight px-1">my favorite podcast! i relate to every topic and it gets me thinking</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-md border border-gray-200 w-full h-[350px] flex flex-col items-center justify-start pt-6 px-6">
+              <img src="/images/media-4.png" alt="" className="w-[145px] h-[205px] object-cover" />
+              <div className="mt-3 text-center px-2">
+                <p className="text-xs text-[#434040] lowercase leading-tight">the gratitude journal</p>
+                <p className="text-xs text-[#717171] lowercase mt-0.5">journal</p>
+                <p className="text-xs text-[#AEAEAE] lowercase mt-2 italic leading-tight px-1">my every day journey to remind me to be grateful for the little things</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-md border border-gray-200 w-full h-[350px] flex flex-col items-center justify-start pt-6 px-6">
+              <img src="/images/media-5.png" alt="" className="w-[145px] h-[205px] object-cover" />
+              <div className="mt-3 text-center px-2">
+                <p className="text-xs text-[#434040] lowercase leading-tight">the psychology of your 20s</p>
+                <p className="text-xs text-[#717171] lowercase mt-0.5">jemma sbeg</p>
+                <p className="text-xs text-[#AEAEAE] lowercase mt-2 italic leading-tight px-1">podcast/substack that helps me dig deeper on a psych concept</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-md border border-gray-200 w-full h-[350px] flex flex-col items-center justify-start pt-6 px-6">
+              <img src="/images/media-6.png" alt="" className="w-[145px] h-[205px] object-cover" />
+              <div className="mt-3 text-center px-2">
+                <p className="text-xs text-[#434040] lowercase leading-tight">cognitive behavioral therapy</p>
+                <p className="text-xs text-[#717171] lowercase mt-0.5">olivia telford</p>
+                <p className="text-xs text-[#AEAEAE] lowercase mt-2 italic leading-tight px-1">cbt! love because it explains psychology in scientific terms</p>
+              </div>
+            </div>
           </div>
         </section>
       </main>

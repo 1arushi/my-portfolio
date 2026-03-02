@@ -1,40 +1,55 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import PageLayout from "../../components/PageLayout";
 
 type CardKey = "reviews" | "reels" | "nami" | "article" | "making";
 
-const CARDS: { key: CardKey; label: string; description: string }[] = [
+const CARDS: { key: CardKey; label: string; description: ReactNode }[] = [
   {
     key: "reviews",
     label: "reviews",
-    description:
-      "i made my handwriting a font and put the cafe name right in the image. i keep my captions playful with tons of emojis but never sacrifice my honest takes. i always appreciate the good but will point out what's lacking. every review has a rating at the bottom for matcha, study spot, and outlets and wifi.",
+    description: (
+      <>
+        i made my handwriting a font and put the cafe name right in the image. i keep my captions playful with tons of emojis but never sacrifice my <em>honest takes</em>. i always appreciate the good but will point out what's lacking. every review has a <strong>rating at the bottom</strong> for matcha, study spot, and outlets and wifi.
+      </>
+    ),
   },
   {
     key: "reels",
     label: "reels",
-    description:
-      "cafe culture is more than just the drinks. it's the interior, the vibes, how they structure themselves, whether it's a good study spot. these reels were my first real introduction to video editing, learning to film aesthetic clips and cut them to a beat. after months of creating behind the camera, i finally felt comfortable adding a face to the account, making review videos, sharing my honest thoughts, and just being myself on screen.",
+    description: (
+      <>
+        cafe culture is <em>more than just the drinks</em>. it's the interior, the vibes, how they structure themselves, whether it's a good study spot. these reels were my <strong>first real introduction to video editing</strong>, learning to film aesthetic clips and cut them to a beat. after months of creating behind the camera, i finally felt comfortable adding a face to the account, making review videos, sharing my honest thoughts, and just <em>being myself on screen</em>.
+      </>
+    ),
   },
   {
     key: "nami",
     label: "nami",
-    description:
-      "nami is a matcha brand started by @urmomashley, a youtuber i followed growing up who used to make lifestyle content. she has been a big inspiration because she combines so many of my passions. when nami reached out to make me an ambassador it felt like a pivotal 'i made it' moment. i even got to meet her briefly in la.",
+    description: (
+      <>
+        nami is a matcha brand started by @urmomashley, a youtuber i followed growing up who used to make lifestyle content. she has been a <em>big inspiration</em> because she combines so many of my passions. when nami reached out to make me an ambassador it felt like a pivotal <strong>'i made it'</strong> moment. i even got to meet her briefly in la.
+      </>
+    ),
   },
   {
     key: "article",
     label: "article",
-    description:
-      "voyage la reached out to write an article about me and my matcha journey. it was a surreal opportunity that made me feel like i could be seen by the greater la area, not just my immediate community. writing it also reminded me why i started and how this account is truly more than just a cafe page.",
+    description: (
+      <>
+        voyage la reached out to write an article about me and my matcha journey. it was a <em>surreal opportunity</em> that made me feel like i could be seen by the greater la area, not just my immediate community. writing it also reminded me why i started and how this account is truly <strong>more than just a cafe page</strong>.
+      </>
+    ),
   },
   {
     key: "making",
     label: "making matcha",
-    description:
-      "i expanded my account to making my own matcha. filming these videos taught me how to capture the process of creating. matcha has a technique and tradition behind it, and i care deeply about honoring that. making matcha is therapeutic, slow, intentional, and one of the few things that fully pulls me away from a screen.",
+    description: (
+      <>
+        i expanded my account to making my own matcha. filming these videos taught me how to capture the process of creating. matcha has a <strong>technique and tradition</strong> behind it, and i care deeply about honoring that. making matcha is <em>therapeutic, slow, intentional</em>, and one of the few things that fully pulls me away from a screen.
+      </>
+    ),
   },
 ];
 
@@ -50,6 +65,12 @@ const SCATTER_LIFE: Record<"life-reels" | "life-75", string> = {
   "life-reels": "translate(-60%, 150vh) rotate(-15deg)",
   "life-75": "translate(60%, 150vh) rotate(12deg)",
 };
+
+const MATCHA_CARD_KEYS = ["matcha-reviews", "matcha-reels", "matcha-nami", "matcha-article", "matcha-making"] as const;
+const LIFE_CARD_KEYS = ["life-reels", "life-75"] as const;
+const SUBSTACK_CARD_KEY = "substack-card";
+const LINKEDIN_CARD_KEY = "linkedin-card";
+const FIRSTRAY_CARD_KEYS = ["firstray-shop", "firstray-stickers", "firstray-custom", "firstray-collabs"] as const;
 
 const FIRSTRAY_CARDS = [
   { key: "firstray-shop" as const, label: "shop" },
@@ -71,11 +92,80 @@ export default function CreativePage() {
   const [scatteredSubstack, setScatteredSubstack] = useState(false);
   const [scatteredLinkedin, setScatteredLinkedin] = useState(false);
   const [scatteredFirstray, setScatteredFirstray] = useState(false);
+  const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
+  const chugofmatchaSectionRef = useRef<HTMLDivElement>(null);
+  const chugoflifeSectionRef = useRef<HTMLDivElement>(null);
+  const substackSectionRef = useRef<HTMLDivElement>(null);
+  const linkedinSectionRef = useRef<HTMLDivElement>(null);
+  const firstraySectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = chugofmatchaSectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) setFlippedCards((prev) => { const next = new Set(prev); MATCHA_CARD_KEYS.forEach((k) => next.delete(k)); return next; });
+      },
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = chugoflifeSectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) setFlippedCards((prev) => { const next = new Set(prev); LIFE_CARD_KEYS.forEach((k) => next.delete(k)); return next; });
+      },
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = substackSectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) setFlippedCards((prev) => { const next = new Set(prev); next.delete(SUBSTACK_CARD_KEY); return next; });
+      },
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = linkedinSectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) setFlippedCards((prev) => { const next = new Set(prev); next.delete(LINKEDIN_CARD_KEY); return next; });
+      },
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = firstraySectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) setFlippedCards((prev) => { const next = new Set(prev); FIRSTRAY_CARD_KEYS.forEach((k) => next.delete(k)); return next; });
+      },
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <PageLayout>
-      <style>{`.flip-card:hover .flip-inner { transform: rotateY(180deg); }
-.flip-inner { transition: transform 0.5s ease; transform-style: preserve-3d; transform-origin: center center; }`}</style>
       <main className="container mx-auto px-6 py-1 -mt-8 font-sans text-[#434040] lowercase">
         <section className="max-w-4xl mx-auto pt-2 pb-12">
           <div className="relative z-0">
@@ -93,7 +183,7 @@ export default function CreativePage() {
             human, and helps me hold onto what makes me unique and special as a person.
           </p>
 
-          <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 py-10 overflow-visible relative z-50" style={{ zIndex: 50 }}>
+          <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 py-10 overflow-visible relative z-50" style={{ zIndex: 50 }} ref={chugofmatchaSectionRef}>
             <div className="flex items-center justify-between w-full">
               <h1 className="text-xl font-normal text-gray-400 lowercase">@chugofmatcha</h1>
               <div className="flex gap-3 items-center">
@@ -153,7 +243,16 @@ export default function CreativePage() {
                   {CARDS.slice(0, 2).map((card) => (
                     <div
                       key={card.key}
-                      className="flip-card relative cursor-pointer rounded-2xl"
+                      className="relative cursor-pointer rounded-2xl"
+                      onMouseEnter={() => {
+                        setFlippedCards((prev) => {
+                          const next = new Set(prev);
+                          const key = `matcha-${card.key}`;
+                          if (next.has(key)) next.delete(key);
+                          else next.add(key);
+                          return next;
+                        });
+                      }}
                       style={{
                         perspective: "1000px",
                         height: "100%",
@@ -166,7 +265,7 @@ export default function CreativePage() {
                           : {}),
                       }}
                     >
-                      <div className="flip-inner" style={{ position: "absolute", inset: 0 }}>
+                      <div style={{ position: "absolute", inset: 0, transform: flippedCards.has(`matcha-${card.key}`) ? "rotateY(180deg)" : "rotateY(0deg)", transition: "transform 0.5s ease", transformStyle: "preserve-3d", transformOrigin: "center center" }}>
                       <div
                         className="absolute inset-0 rounded-2xl border border-gray-200"
                         style={{
@@ -192,7 +291,16 @@ export default function CreativePage() {
                   {CARDS.slice(2).map((card) => (
                     <div
                       key={card.key}
-                      className="flip-card relative cursor-pointer rounded-2xl"
+                      className="relative cursor-pointer rounded-2xl"
+                      onMouseEnter={() => {
+                        setFlippedCards((prev) => {
+                          const next = new Set(prev);
+                          const key = `matcha-${card.key}`;
+                          if (next.has(key)) next.delete(key);
+                          else next.add(key);
+                          return next;
+                        });
+                      }}
                       style={{
                         perspective: "1000px",
                         height: "100%",
@@ -205,7 +313,7 @@ export default function CreativePage() {
                           : {}),
                       }}
                     >
-                      <div className="flip-inner" style={{ position: "absolute", inset: 0 }}>
+                      <div style={{ position: "absolute", inset: 0, transform: flippedCards.has(`matcha-${card.key}`) ? "rotateY(180deg)" : "rotateY(0deg)", transition: "transform 0.5s ease", transformStyle: "preserve-3d", transformOrigin: "center center" }}>
                       <div
                         className="absolute inset-0 rounded-2xl border border-gray-200"
                         style={{
@@ -251,7 +359,7 @@ export default function CreativePage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 py-10 mt-6 overflow-visible relative z-50" style={{ zIndex: 40 }}>
+          <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 py-10 mt-6 overflow-visible relative z-50" style={{ zIndex: 40 }} ref={chugoflifeSectionRef}>
             <div className="flex items-center justify-between w-full">
               <h1 className="text-xl font-normal text-gray-400 lowercase">@chugoflife</h1>
               <div className="flex gap-3 items-center">
@@ -301,7 +409,15 @@ export default function CreativePage() {
               ].map((card) => (
                 <div
                   key={card.key}
-                  className="flip-card relative cursor-pointer rounded-2xl"
+                  className="relative cursor-pointer rounded-2xl"
+                  onMouseEnter={() => {
+                    setFlippedCards((prev) => {
+                      const next = new Set(prev);
+                      if (next.has(card.key)) next.delete(card.key);
+                      else next.add(card.key);
+                      return next;
+                    });
+                  }}
                   style={{
                     perspective: "1000px",
                     height: "100%",
@@ -314,7 +430,7 @@ export default function CreativePage() {
                       : {}),
                   }}
                 >
-                  <div className="flip-inner" style={{ position: "absolute", inset: 0 }}>
+                  <div style={{ position: "absolute", inset: 0, transform: flippedCards.has(card.key) ? "rotateY(180deg)" : "rotateY(0deg)", transition: "transform 0.5s ease", transformStyle: "preserve-3d", transformOrigin: "center center" }}>
                   <div
                     className="absolute inset-0 rounded-2xl border border-gray-200"
                     style={{
@@ -369,7 +485,7 @@ export default function CreativePage() {
 
           <div className="grid grid-cols-2 gap-6 mt-6" style={{ zIndex: 30 }}>
             {/* Substack box */}
-            <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 overflow-visible relative z-50" style={{ zIndex: 30 }}>
+            <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 overflow-visible relative z-50" style={{ zIndex: 30 }} ref={substackSectionRef}>
               <div className="flex items-center justify-between w-full">
                 <h2 className="text-xl font-normal text-gray-400 lowercase">substack</h2>
                 <a
@@ -394,7 +510,15 @@ export default function CreativePage() {
                 </div>
                 <div className="absolute inset-0 z-10">
                   <div
-                    className="flip-card relative cursor-pointer rounded-2xl h-full w-full"
+                    className="relative cursor-pointer rounded-2xl h-full w-full"
+                    onMouseEnter={() => {
+                      setFlippedCards((prev) => {
+                        const next = new Set(prev);
+                        if (next.has(SUBSTACK_CARD_KEY)) next.delete(SUBSTACK_CARD_KEY);
+                        else next.add(SUBSTACK_CARD_KEY);
+                        return next;
+                      });
+                    }}
                     style={{
                       perspective: "1000px",
                       ...(scatteredSubstack
@@ -406,7 +530,7 @@ export default function CreativePage() {
                         : {}),
                     }}
                   >
-                    <div className="flip-inner" style={{ position: "absolute", inset: 0 }}>
+                    <div style={{ position: "absolute", inset: 0, transform: flippedCards.has(SUBSTACK_CARD_KEY) ? "rotateY(180deg)" : "rotateY(0deg)", transition: "transform 0.5s ease", transformStyle: "preserve-3d", transformOrigin: "center center" }}>
                       <div
                         className="absolute inset-0 rounded-2xl border border-gray-200"
                         style={{
@@ -450,7 +574,7 @@ export default function CreativePage() {
             </div>
 
             {/* LinkedIn box */}
-            <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 overflow-visible relative z-50" style={{ zIndex: 30 }}>
+            <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 overflow-visible relative z-50" style={{ zIndex: 30 }} ref={linkedinSectionRef}>
               <div className="flex items-center justify-between w-full">
                 <h2 className="text-xl font-normal text-gray-400 lowercase">linkedin</h2>
                 <a
@@ -475,7 +599,15 @@ export default function CreativePage() {
                 </div>
                 <div className="absolute inset-0 z-10">
                   <div
-                    className="flip-card relative cursor-pointer rounded-2xl h-full w-full"
+                    className="relative cursor-pointer rounded-2xl h-full w-full"
+                    onMouseEnter={() => {
+                      setFlippedCards((prev) => {
+                        const next = new Set(prev);
+                        if (next.has(LINKEDIN_CARD_KEY)) next.delete(LINKEDIN_CARD_KEY);
+                        else next.add(LINKEDIN_CARD_KEY);
+                        return next;
+                      });
+                    }}
                     style={{
                       perspective: "1000px",
                       ...(scatteredLinkedin
@@ -487,7 +619,7 @@ export default function CreativePage() {
                         : {}),
                     }}
                   >
-                    <div className="flip-inner" style={{ position: "absolute", inset: 0 }}>
+                    <div style={{ position: "absolute", inset: 0, transform: flippedCards.has(LINKEDIN_CARD_KEY) ? "rotateY(180deg)" : "rotateY(0deg)", transition: "transform 0.5s ease", transformStyle: "preserve-3d", transformOrigin: "center center" }}>
                       <div
                         className="absolute inset-0 rounded-2xl border border-gray-200"
                         style={{
@@ -531,7 +663,7 @@ export default function CreativePage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 py-10 mt-6 overflow-visible relative z-50" style={{ zIndex: 20 }}>
+          <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 py-10 mt-6 overflow-visible relative z-50" style={{ zIndex: 20 }} ref={firstraySectionRef}>
             <div className="flex items-center justify-between w-full">
             <h2 className="text-xl font-normal text-gray-400 lowercase">firstraydesigns</h2>
               <div className="flex gap-3 items-center">
@@ -564,7 +696,15 @@ export default function CreativePage() {
                 {FIRSTRAY_CARDS.map((card) => (
                   <div
                     key={card.key}
-                    className="flip-card relative cursor-pointer rounded-2xl"
+                    className="relative cursor-pointer rounded-2xl"
+                    onMouseEnter={() => {
+                      setFlippedCards((prev) => {
+                        const next = new Set(prev);
+                        if (next.has(card.key)) next.delete(card.key);
+                        else next.add(card.key);
+                        return next;
+                      });
+                    }}
                     style={{
                       perspective: "1000px",
                       height: "100%",
@@ -577,7 +717,7 @@ export default function CreativePage() {
                         : {}),
                     }}
                   >
-                    <div className="flip-inner" style={{ position: "absolute", inset: 0 }}>
+                    <div style={{ position: "absolute", inset: 0, transform: flippedCards.has(card.key) ? "rotateY(180deg)" : "rotateY(0deg)", transition: "transform 0.5s ease", transformStyle: "preserve-3d", transformOrigin: "center center" }}>
                       <div
                         className="absolute inset-0 rounded-2xl border border-gray-200"
                         style={{
