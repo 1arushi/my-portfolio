@@ -170,7 +170,7 @@ export default function CreativePage() {
         <section className="max-w-4xl mx-auto pt-2 pb-12">
           <div className="relative z-0">
           <h2 className="text-3xl font-normal text-[#717171] lowercase mb-3">why creative?</h2>
-          <p className="text-sm text-gray-400 leading-relaxed mb-8">
+          <p className="text-sm text-[#434040] leading-relaxed mb-8">
             i have always been a creative person. paper crafts, origami, stickers, drawing,
             painting, duck tape creations, knitting. but as the world became more technically
             inclined, i noticed myself gravitating towards it too. all of a sudden creativity
@@ -185,7 +185,7 @@ export default function CreativePage() {
 
           <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 py-10 overflow-visible relative z-50" style={{ zIndex: 50 }} ref={chugofmatchaSectionRef}>
             <div className="flex items-center justify-between w-full">
-              <h1 className="text-xl font-normal text-gray-400 lowercase">@chugofmatcha</h1>
+              <h1 className="text-xl font-normal text-[#717171] lowercase">@chugofmatcha</h1>
               <div className="flex gap-3 items-center">
                 <a
                   href="https://www.instagram.com/chugofmatcha"
@@ -361,7 +361,7 @@ export default function CreativePage() {
 
           <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 py-10 mt-6 overflow-visible relative z-50" style={{ zIndex: 40 }} ref={chugoflifeSectionRef}>
             <div className="flex items-center justify-between w-full">
-              <h1 className="text-xl font-normal text-gray-400 lowercase">@chugoflife</h1>
+              <h1 className="text-xl font-normal text-[#717171] lowercase">@chugoflife</h1>
               <div className="flex gap-3 items-center">
                 <a
                   href="https://www.instagram.com/chugoflife"
@@ -487,7 +487,7 @@ export default function CreativePage() {
             {/* Substack box */}
             <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 overflow-visible relative z-50" style={{ zIndex: 30 }} ref={substackSectionRef}>
               <div className="flex items-center justify-between w-full">
-                <h2 className="text-xl font-normal text-gray-400 lowercase">substack</h2>
+                <h2 className="text-xl font-normal text-[#717171] lowercase">substack</h2>
                 <a
                   href="https://substack.com/@chugoflife"
                   target="_blank"
@@ -576,7 +576,7 @@ export default function CreativePage() {
             {/* LinkedIn box */}
             <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 overflow-visible relative z-50" style={{ zIndex: 30 }} ref={linkedinSectionRef}>
               <div className="flex items-center justify-between w-full">
-                <h2 className="text-xl font-normal text-gray-400 lowercase">linkedin</h2>
+                <h2 className="text-xl font-normal text-[#717171] lowercase">linkedin</h2>
                 <a
                   href="https://www.linkedin.com/in/1arushigupta/"
                   target="_blank"
@@ -665,7 +665,7 @@ export default function CreativePage() {
 
           <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 py-10 mt-6 overflow-visible relative z-50" style={{ zIndex: 20 }} ref={firstraySectionRef}>
             <div className="flex items-center justify-between w-full">
-            <h2 className="text-xl font-normal text-gray-400 lowercase">firstraydesigns</h2>
+            <h2 className="text-xl font-normal text-[#717171] lowercase">firstraydesigns</h2>
               <div className="flex gap-3 items-center">
                 <a href="https://firstraydesigns.com" target="_blank" rel="noopener noreferrer" aria-label="Website">
                   <svg viewBox="0 0 24 24" className="w-4 h-4 text-gray-400 hover:text-gray-600 transition-colors" fill="currentColor">
