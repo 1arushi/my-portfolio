@@ -76,14 +76,26 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
         <button
           type="button"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-10"
+          className={
+            (isExpanded
+              ? "fixed top-6 left-6"
+              : "absolute top-4 left-4") +
+            " w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-50 p-0 leading-none"
+          }
         >
-          {isExpanded ? "↘" : "↖"}
+          <span style={{ transform: "translate(0px, 2px)", display: "inline-block" }}>
+            {isExpanded ? "↘" : "↖"}
+          </span>
         </button>
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-10"
+          className={
+            (isExpanded
+              ? "fixed top-6 right-6"
+              : "absolute top-4 right-4") +
+            " w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-50 p-0 leading-none"
+          }
           aria-label="Close"
         >
           ×
@@ -94,24 +106,28 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
             {project.name}
           </h2>
 
-          {/* Timeline, Role, Org, Team Row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
-            <div>
-              <p className="text-xs text-gray-400 mb-1 lowercase">timeline</p>
-              <p className="text-sm text-gray-500 lowercase">{project.timeline}</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-400 mb-1 lowercase">role</p>
-              <p className="text-sm text-gray-500 lowercase">{project.role}</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-400 mb-1 lowercase">org</p>
-              <p className="text-sm text-gray-500 lowercase">{project.org}</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-400 mb-1 lowercase">team</p>
-              <p className="text-sm text-gray-500 lowercase">{project.team}</p>
-            </div>
+          {/* Timeline, Role, Org, Team — pills only (no labels) */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.timeline && (
+              <span className="bg-[#D9D9D9]/50 rounded-full px-3 py-1 text-xs text-gray-700 lowercase">
+                {project.timeline}
+              </span>
+            )}
+            {project.role && (
+              <span className="bg-[#D9D9D9]/50 rounded-full px-3 py-1 text-xs text-gray-700 lowercase">
+                {project.role}
+              </span>
+            )}
+            {project.org && (
+              <span className="bg-[#D9D9D9]/50 rounded-full px-3 py-1 text-xs text-gray-700 lowercase">
+                {project.org}
+              </span>
+            )}
+            {project.team && (project.id === "uber" || project.id === "microsoft") && (
+              <span className="bg-[#D9D9D9]/50 rounded-full px-3 py-1 text-xs text-gray-700 lowercase">
+                {project.team}
+              </span>
+            )}
           </div>
 
           {/* Divider */}
@@ -898,28 +914,64 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
             </>
           )}
 
-          {/* Next — two clickable cards (at bottom of scrollable content) */}
+          {/* Next — clickable cards (at bottom of scrollable content) */}
           {nextProjects.length > 0 && onSelectProject && (
             <div className="border-t border-gray-200 mt-6 pt-6">
               <p className="text-xs text-gray-400 mb-4 lowercase">next</p>
-              <div className="grid grid-cols-2 gap-4">
-                {nextProjects.map((nextProject) => (
-                    <div
-                      key={nextProject.id}
-                      onClick={() => onSelectProject(nextProject)}
-                      className="relative cursor-pointer rounded-[40px] overflow-hidden aspect-video transition-transform duration-200 hover:scale-[1.02]"
-                    >
-                      {nextProject.image && (
-                        <Image
-                          src={nextProject.image}
-                          alt={nextProject.name}
-                          fill
-                          className="object-cover"
-                        />
-                      )}
+              {(() => {
+                if (!isExpanded) {
+                  const visibleNext = nextProjects.slice(0, 2);
+                  if (visibleNext.length === 0) return null;
+                  return (
+                    <div className="grid grid-cols-2 gap-4">
+                      {visibleNext.map((nextProject) => (
+                        <div
+                          key={nextProject.id}
+                          onClick={() => onSelectProject(nextProject)}
+                          className="relative cursor-pointer rounded-[40px] overflow-hidden aspect-video transition-transform duration-200 hover:scale-[1.02]"
+                        >
+                          {nextProject.image && (
+                            <Image
+                              src={nextProject.image}
+                              alt={nextProject.name}
+                              fill
+                              className="object-cover"
+                            />
+                          )}
+                        </div>
+                      ))}
                     </div>
-                ))}
-              </div>
+                  );
+                }
+
+                // Full-page expanded view: show exactly 3 cards, the next 3 projects in allProjects (wrapping)
+                if (allProjects.length === 0 || currentIndex === -1) return null;
+                const expandedNext = [];
+                for (let i = 1; i <= 3; i++) {
+                  const idx = (currentIndex + i) % allProjects.length;
+                  expandedNext.push(allProjects[idx]);
+                }
+                return (
+                  <div className="grid grid-cols-3 gap-4">
+                    {expandedNext.map((nextProject) => (
+                      <div
+                        key={nextProject.id}
+                        onClick={() => onSelectProject(nextProject)}
+                        className="relative cursor-pointer rounded-[32px] overflow-hidden aspect-video transition-transform duration-200 hover:scale-[1.02]"
+                      >
+                        {nextProject.image && (
+                          <Image
+                            src={nextProject.image}
+                            alt={nextProject.name}
+                            fill
+                            className="object-cover"
+                          />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
             </div>
           )}
         </div>
