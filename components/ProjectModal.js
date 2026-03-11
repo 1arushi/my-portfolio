@@ -6,6 +6,7 @@ import { BarChart, Bar, XAxis, YAxis, Cell, PieChart, Pie, Tooltip, ResponsiveCo
 
 export default function ProjectModal({ project, isOpen, onClose, nextProjects = [], onSelectProject, projects: allProjects = [] }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [imageModal, setImageModal] = useState(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -131,6 +132,19 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
               </p>
             </div>
           </div>
+
+          {project.images && project.images.length > 0 && (
+            <div className="flex flex-row gap-3 overflow-x-auto mt-4 pb-2">
+              {project.images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  className="h-48 w-auto object-cover rounded-xl flex-shrink-0 cursor-pointer"
+                  onClick={() => setImageModal(img)}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Case Study — full-width, only if present */}
           {project.caseStudy && (() => {
@@ -910,6 +924,18 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
           )}
         </div>
       </div>
+      {imageModal && (
+        <div
+          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center"
+          onClick={() => setImageModal(null)}
+        >
+          <img
+            src={imageModal}
+            className="max-h-[85vh] max-w-[85vw] object-contain rounded-xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }

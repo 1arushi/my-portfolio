@@ -189,6 +189,13 @@ to fund the app's development and deployment, we ran fundraisers on campus inclu
     name: "bruin tank",
     image: "/images/bruin-tank.png",
     gif: "/images/bruin-tank.gif",
+    images: [
+      "/images/btank-1.jpeg",
+      "/images/btank-2.jpeg",
+      "/images/btank-3.jpeg",
+      "/images/btank-4.jpeg",
+      "/images/btank-5.jpeg"
+    ],
     tag: "executive director",
     timeline: "may 2025 - present",
     role: "executive director",
