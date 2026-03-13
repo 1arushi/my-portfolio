@@ -32,7 +32,7 @@ export default function AboutPage() {
               >
                 follow
               </a>
-              <span className="text-gray-500 text-lg font-semibold ml-2">...</span>
+              <span className="hidden md:inline text-gray-500 text-lg font-semibold ml-2">...</span>
             </div>
 
             {/* Photo carousel */}

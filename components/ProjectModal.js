@@ -83,7 +83,12 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
             " w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-50 p-0 leading-none"
           }
         >
-          <span style={{ transform: "translate(0px, 2px)", display: "inline-block" }}>
+          <span
+            style={{
+              transform: isExpanded ? "translate(0px, -2px)" : "translate(0px, 2px)",
+              display: "inline-block",
+            }}
+          >
             {isExpanded ? "↘" : "↖"}
           </span>
         </button>
@@ -137,14 +142,20 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
           <div className="grid md:grid-cols-2 gap-24">
             <div>
               <p className="text-xs text-gray-400 mb-2 lowercase">goal</p>
+              {/* Desktop: full goal, Mobile: same goal text */}
               <p className="text-base text-gray-900 leading-relaxed lowercase">
                 {project.goal}
               </p>
             </div>
             <div>
               <p className="text-xs text-gray-400 mb-2 lowercase">description</p>
-              <p className="text-sm text-gray-900 leading-relaxed lowercase">
+              {/* Desktop: full description */}
+              <p className="hidden md:block text-sm text-gray-900 leading-relaxed lowercase">
                 {project.description}
+              </p>
+              {/* Mobile: short description */}
+              <p className="block md:hidden text-sm text-gray-900 leading-relaxed lowercase">
+                {project.mobileDescription ?? project.description}
               </p>
             </div>
           </div>
@@ -155,7 +166,7 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
                 <img
                   key={i}
                   src={img}
-                  className="h-48 w-auto object-cover rounded-xl flex-shrink-0 cursor-pointer"
+                  className="h-40 w-auto object-cover rounded-xl flex-shrink-0 cursor-pointer"
                   onClick={() => setImageModal(img)}
                 />
               ))}
@@ -163,7 +174,10 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
           )}
 
           {/* Case Study — full-width, only if present */}
-          {project.caseStudy && (() => {
+          {/* Desktop: full case study renderer */}
+          {project.caseStudy && (
+            <div className="hidden md:block">
+          {(() => {
             const BOLD_WORDS = /(excel|power automate|power bi|prompt engineering|data pipelines|sharepoint|tableau|RAG|\br\b)/gi;
             const isHeadingLine = (line) => {
               const t = line.trim().toLowerCase();
@@ -889,25 +903,319 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
               </>
             );
           })()}
+            </div>
+          )}
+
+          {/* Mobile: short case study overview */}
+          {project.mobileCaseStudy && (
+            <div className="block md:hidden mt-4">
+              <div className="border-t border-gray-200 my-4"></div>
+              <p className="text-xs text-gray-400 mb-2 lowercase">overview</p>
+              <p className="text-sm text-gray-900 leading-relaxed lowercase">
+                {project.mobileCaseStudy}
+              </p>
+            </div>
+          )}
+
+          {/* Mobile: image strips for projects whose images are primarily in desktop case studies */}
+          {project.id === "cisco" && (
+            <div className="block md:hidden mt-3">
+              <div className="flex flex-row gap-3 overflow-x-auto pb-2">
+                {["/images/cisco-photo1.png", "/images/cisco-photo2.png"].map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    className="h-40 w-auto object-cover rounded-xl flex-shrink-0"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {project.id === "acely" && (
+            <div className="block md:hidden mt-3">
+              <div className="flex flex-row gap-3 overflow-x-auto pb-2">
+                {[
+                  "/images/acely-viral1.png",
+                  "/images/acely-viral2.png",
+                  "/images/acely-viral3.png",
+                  "/images/acely-viral4.png",
+                  "/images/acely-viral5.png",
+                ].map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    className="h-40 w-auto object-cover rounded-xl flex-shrink-0"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {project.id === "blink" && (
+            <div className="block md:hidden mt-3">
+              <div className="flex flex-row gap-3 overflow-x-auto pb-2">
+                {[
+                  "/images/blink-v1.png",
+                  "/images/blink-v2.png",
+                  "/images/blink-v3.png",
+                  "/images/blink-viral1.png",
+                  "/images/blink-viral2.png",
+                  "/images/blink-viral3.png",
+                  "/images/blink-fundraiser1.jpg",
+                  "/images/blink-fundraiser2.jpg",
+                ].map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    className="h-40 w-auto object-cover rounded-xl flex-shrink-0"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {project.id === "devx" && (
+            <div className="block md:hidden mt-3">
+              <div className="flex flex-row gap-3 overflow-x-auto pb-2">
+                {[
+                  "/images/devx-photo1.jpg",
+                  "/images/devx-photo2.png",
+                  "/images/devx-photo3.jpeg",
+                ].map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    className="h-40 w-auto object-cover rounded-xl flex-shrink-0"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Mobile: stacked charts for Uber and Microsoft */}
+          {project.id === "uber" && (
+            <div className="block md:hidden mt-6 space-y-6">
+              {(() => {
+                const UBER_FRUSTRATIONS = [
+                  { name: "expensive fees", value: 71 },
+                  { name: "long wait times", value: 32 },
+                  { name: "stolen/lost orders", value: 12 },
+                  { name: "limited options", value: 8 },
+                  { name: "unclear delivery", value: 6 },
+                ];
+                const UBER_UBER_ONE = [
+                  { name: "heard of it, not using", value: 49 },
+                  { name: "active member", value: 16 },
+                  { name: "never heard of it", value: 9 },
+                ];
+                const UBER_LOCKER = [
+                  { name: "maybe", value: 41 },
+                  { name: "definitely", value: 18 },
+                  { name: "probably not", value: 8 },
+                  { name: "not sure", value: 6 },
+                  { name: "definitely not", value: 1 },
+                ];
+                const PIE_COLORS = ["#434040", "#D9D9D9", "#888888"];
+
+                return (
+                  <>
+                    {/* Horizontal bar: frustrations */}
+                    <div>
+                      <p className="text-xs text-gray-400 mb-2 lowercase">delivery frustrations</p>
+                      <div style={{ height: 200 }}>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart data={UBER_FRUSTRATIONS} layout="vertical" margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+                            <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
+                            <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 11, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
+                            <Bar dataKey="value" fill="#434040" radius={0} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+
+                    {/* Donut: Uber One awareness */}
+                    <div>
+                      <p className="text-xs text-gray-400 mb-2 lowercase">uber one awareness</p>
+                      <div style={{ height: 200 }}>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <PieChart>
+                            <Pie
+                              data={UBER_UBER_ONE}
+                              dataKey="value"
+                              nameKey="name"
+                              cx="50%"
+                              cy="50%"
+                              innerRadius={50}
+                              outerRadius={80}
+                              paddingAngle={0}
+                            >
+                              {UBER_UBER_ONE.map((_, i) => (
+                                <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
+                              ))}
+                            </Pie>
+                            <Tooltip />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+
+                    {/* Vertical bar: locker interest */}
+                    <div>
+                      <p className="text-xs text-gray-400 mb-2 lowercase">locker delivery interest</p>
+                      <div style={{ height: 200 }}>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart data={UBER_LOCKER} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+                            <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
+                            <YAxis hide />
+                            <Bar dataKey="value" fill="#434040" radius={0} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+          )}
+
+          {project.id === "microsoft" && (
+            <div className="block md:hidden mt-6 space-y-6">
+              {(() => {
+                const MS_PAIN_POINTS = [
+                  { name: "advanced knowledge", value: 86 },
+                  { name: "time consuming", value: 64 },
+                  { name: "creating visuals", value: 42 },
+                  { name: "understanding formulas", value: 42 },
+                ];
+                const MS_USE_CASES = [
+                  { name: "academic", value: 80 },
+                  { name: "internships", value: 63 },
+                  { name: "personal finance", value: 45 },
+                  { name: "never used", value: 7 },
+                ];
+                const MS_LEARNING_PREFERENCES = [
+                  { name: "online tutorials", value: 81 },
+                  { name: "study guides", value: 49 },
+                  { name: "workshops", value: 35 },
+                  { name: "webinars", value: 23 },
+                ];
+                const MS_COLORS = ["#f35629", "#7ebb01", "#ffba06", "#05a3ee"];
+
+                return (
+                  <>
+                    {/* Horizontal bar: pain points */}
+                    <div>
+                      <p className="text-xs text-gray-400 mb-2 lowercase">excel pain points</p>
+                      <div style={{ height: 200 }}>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart data={MS_PAIN_POINTS} layout="vertical" margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+                            <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
+                            <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 11, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
+                            <Bar dataKey="value" radius={0}>
+                              {MS_PAIN_POINTS.map((_, i) => (
+                                <Cell key={i} fill={MS_COLORS[i % MS_COLORS.length]} />
+                              ))}
+                            </Bar>
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+
+                    {/* Donut: use cases */}
+                    <div>
+                      <p className="text-xs text-gray-400 mb-2 lowercase">how students use excel</p>
+                      <div style={{ height: 280 }}>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <PieChart>
+                            <Pie
+                              data={MS_USE_CASES}
+                              dataKey="value"
+                              nameKey="name"
+                              cx="50%"
+                              cy="45%"
+                              innerRadius={50}
+                              outerRadius={80}
+                              paddingAngle={0}
+                            >
+                              {MS_USE_CASES.map((_, i) => (
+                                <Cell key={i} fill={MS_COLORS[i % MS_COLORS.length]} />
+                              ))}
+                            </Pie>
+                            <Legend layout="horizontal" align="center" wrapperStyle={{ paddingTop: 8 }} />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+
+                    {/* Radar: learning preferences */}
+                    <div>
+                      <p className="text-xs text-gray-400 mb-2 lowercase">learning preferences</p>
+                      <div style={{ height: 200 }}>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <RadarChart data={MS_LEARNING_PREFERENCES} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
+                            <PolarGrid stroke="#e5e7eb" />
+                            <PolarAngleAxis dataKey="name" tick={{ fontSize: 11, fill: "#9ca3af" }} />
+                            <PolarRadiusAxis angle={90} tick={{ fontSize: 11, fill: "#9ca3af" }} />
+                            <Radar name="value" dataKey="value" stroke="#f35629" fill="#f35629" fillOpacity={0.3} />
+                          </RadarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+          )}
 
           {/* Takeaway + Skills — two-column grid */}
           {(project.takeaway || project.skills) && (
             <>
-              <div className="border-t border-gray-200 my-6"></div>
-              <div className="grid grid-cols-2 gap-16 mt-6">
-                <div>
-                  <p className="text-xs text-gray-400 mb-2 lowercase">takeaway</p>
-                  <p className="text-sm text-gray-900 leading-relaxed lowercase">{project.takeaway}</p>
+              {/* Desktop: full takeaway and full skills lists */}
+              <div className="hidden md:block">
+                <div className="border-t border-gray-200 my-6"></div>
+                <div className="grid grid-cols-2 gap-16 mt-6">
+                  <div>
+                    <p className="text-xs text-gray-400 mb-2 lowercase">takeaway</p>
+                    <p className="text-sm text-gray-900 leading-relaxed lowercase">{project.takeaway}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400 mb-2 lowercase">skills</p>
+                    {project.skills && (
+                      <>
+                        <p className="text-xs text-gray-400 mt-2 lowercase">technical</p>
+                        <p className="text-sm text-gray-900 leading-relaxed">{project.skills.technical.join(" · ")}</p>
+                        <p className="text-xs text-gray-400 mt-3 lowercase">behavioral</p>
+                        <p className="text-sm text-gray-900 leading-relaxed">{project.skills.behavioral.join(" · ")}</p>
+                      </>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-400 mb-2 lowercase">skills</p>
-                  {project.skills && (
-                    <>
-                      <p className="text-xs text-gray-400 mt-2 lowercase">technical</p>
-                      <p className="text-sm text-gray-900 leading-relaxed">{project.skills.technical.join(" · ")}</p>
-                      <p className="text-xs text-gray-400 mt-3 lowercase">behavioral</p>
-                      <p className="text-sm text-gray-900 leading-relaxed">{project.skills.behavioral.join(" · ")}</p>
-                    </>
+              </div>
+
+              {/* Mobile: shortened takeaway and curated mobile skills */}
+              <div className="block md:hidden mt-6">
+                <div className="border-t border-gray-200 my-6"></div>
+                <div className="space-y-4">
+                  {project.takeaway && (
+                    <div>
+                      <p className="text-xs text-gray-400 mb-2 lowercase">takeaway</p>
+                      <p className="text-sm text-gray-900 leading-relaxed lowercase">
+                        {project.mobileTakeaway ?? project.takeaway}
+                      </p>
+                    </div>
+                  )}
+                  {project.skills && project.mobileSkills && (
+                    <div>
+                      <p className="text-xs text-gray-400 mb-2 lowercase">skills</p>
+                      <p className="text-sm text-gray-900 leading-relaxed lowercase">
+                        {project.mobileSkills.join(" · ")}
+                      </p>
+                    </div>
                   )}
                 </div>
               </div>
@@ -952,12 +1260,15 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
                   expandedNext.push(allProjects[idx]);
                 }
                 return (
-                  <div className="grid grid-cols-3 gap-4">
-                    {expandedNext.map((nextProject) => (
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {expandedNext.map((nextProject, index) => (
                       <div
                         key={nextProject.id}
                         onClick={() => onSelectProject(nextProject)}
-                        className="relative cursor-pointer rounded-[32px] overflow-hidden aspect-video transition-transform duration-200 hover:scale-[1.02]"
+                        className={
+                          "relative cursor-pointer rounded-[32px] overflow-hidden aspect-video transition-transform duration-200 hover:scale-[1.02]" +
+                          (index === 2 ? " hidden md:block" : "")
+                        }
                       >
                         {nextProject.image && (
                           <Image

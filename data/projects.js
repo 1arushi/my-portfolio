@@ -11,6 +11,7 @@ export const projects = [
     team: "cisco",
     goal: "streamline workforce planning and internal reporting",
     description: "built scalable dashboards and tables to identify workforce trends and inform KPI-driven headcount planning. trained an internal AI tool to auto-generate executive slides, reducing reporting time by 35%. automated email generation improving operational efficiency by 30%.",
+    mobileDescription: "streamlined workforce planning with dashboards, automated reporting, and email workflows that saved the team real time.",
     caseStudy: `unlike most intern projects, my time at cisco was made up of several distinct projects — each one solving a real inefficiency for the business & operations team. what made this experience unique was that my manager, knowing my interest in product management, had me lead my own requirements-gathering process for every project i built.
 
 project 1 — headcount data pipeline
@@ -24,7 +25,10 @@ i trained cisco's internal chatbot to pull from weekly meeting notes and auto-ge
 
 bonus — RAG model collaboration
 a senior employee i'd asked for power automate training was so impressed by how quickly i picked things up that he pulled me onto his own project — an automated weekly work summary using a RAG model. he formally recognized me on cisco's internal platform and gave me a monetary reward.`,
+    mobileCaseStudy: "at cisco, i owned several automation-focused projects that cleaned up messy headcount data, automated recurring emails, and trained an internal chatbot to summarize weekly updates for executives.",
     takeaway: "the biggest skill i didn't expect to gain was learning how to ask the right questions. my manager introduced me to requirements-gathering as a PM skill. i sat with stakeholders for hours to uncover what they actually needed, not just what they said they wanted. i realized people rarely know how to articulate their needs, and learning to draw that out was more valuable than any technical skill i built.",
+    mobileTakeaway: "the biggest skill i gained was learning to ask the right questions and draw out what stakeholders actually needed.",
+    mobileSkills: ["R", "Tableau", "Power Automate", "prompt engineering", "stakeholder requirements gathering"],
     skills: {
       technical: ["R", "Excel", "Tableau", "Power BI", "Power Automate", "SharePoint", "prompt engineering", "RAG models", "data pipelines", "product management"],
       behavioral: ["stakeholder requirements gathering", "cross-functional collaboration", "asking the right questions", "project ownership & initiative"]
@@ -42,6 +46,7 @@ a senior employee i'd asked for power automate training was so impressed by how 
     team: "acely.ai",
     goal: "grow user base through data-driven marketing",
     description: "grew user base by 10k+ through audience trend analysis and A/B testing. produced 10 gen z-targeted tiktoks weekly generating 700k+ views. implemented manychat automation to instantly send resources based on keyword comments.",
+    mobileDescription: "grew acely's user base with data-backed tiktoks and automation that turned comments into leads instantly.",
     caseStudy: `acely.ai is an ai-powered standardized test prep platform that gives students personalized practice questions for the SAT, ACT, and beyond. i joined as a product analytics intern on the content marketing team with one goal: bring in more users organically and make content that actually resonated with high school and college students.
 
 project 1 — content strategy
@@ -55,7 +60,10 @@ this is what i'm most proud of. i realized the team couldn't make the right cont
 
 project 4 — a/b testing
 i ran a/b tests on the platform itself, testing whether users preferred seeing practice questions or their past results on the landing screen first. the data showed users strongly preferred seeing their results first, which directly informed a product decision.`,
+    mobileCaseStudy: "at acely i tested content ideas, automated dm replies, and built scrappy analytics so our tiktoks actually matched what students wanted to see.",
     takeaway: "you are more than your job title. if you care about the company, you find ways to contribute beyond what's asked. building that analytics system wasn't in my job description but it made our work smarter and made me more invested in every piece of content we made.",
+    mobileTakeaway: "if you care about the company, you find ways to contribute beyond what's asked.",
+    mobileSkills: ["content strategy", "A/B testing", "ManyChat", "data analysis", "taking initiative"],
     skills: {
       technical: ["content strategy", "A/B testing", "ManyChat", "data analysis", "Excel", "short-form video", "trend analysis", "product marketing", "video editing", "content creation"],
       behavioral: ["taking initiative", "cross-functional thinking", "going beyond your role", "audience research", "creative direction"]
@@ -73,6 +81,7 @@ i ran a/b tests on the platform itself, testing whether users preferred seeing p
     team: "product space",
     goal: "improve uber eats adoption at universities",
     description: "surveyed 300+ UCLA students and conducted 15 interviews to identify pain points in uber eats university adoption. built detailed user personas using pivot tables for market analysis and go-to-market strategy.",
+    mobileDescription: "researched why students weren't using uber eats and designed a cheaper, hub-based delivery model tailored to campus life.",
     caseStudy: `as part of a product management contract through Product Space, i worked alongside a team of fellow UCLA students to understand why uber eats wasn't gaining traction among UCLA students despite being on one of the largest university campuses in the US. i surveyed 300+ students and conducted 15 in-depth interviews to find out why.
 
 project 1 — research & discovery
@@ -83,7 +92,10 @@ the interviews added critical nuance the survey couldn't capture. students on th
 
 project 3 — go-to-market recommendation
 based on our findings, we proposed a hub-based delivery model: designated pickup stations across campus, one on the hill for late-night demand, one on campus, and two near the apartment areas where need was highest. drivers would deliver multiple orders to one location at once, cutting delivery costs significantly. we also proposed a reusable container program where students could return containers for money back, adding an eco-friendly incentive that would resonate with the UCLA demographic.`,
+    mobileCaseStudy: "for uber eats, i combined surveys and interviews to show that dorm and apartment students had totally different needs, then helped design a cheaper campus delivery model around that insight.",
     takeaway: "the data told us where to look, but the interviews told us why. students on the hill and students in apartments had completely different relationships with food delivery, and treating them as one user group would have led to the wrong solution entirely.",
+    mobileTakeaway: "the data told us where to look, but the interviews told us why.",
+    mobileSkills: ["survey design", "user interviews", "market research", "go-to-market strategy", "user empathy"],
     skills: {
       technical: ["survey design", "data analysis", "pivot tables", "market research", "user interviews", "go-to-market strategy"],
       behavioral: ["synthesizing qualitative and quantitative data", "strategic thinking", "user empathy", "stakeholder communication"]
@@ -101,6 +113,7 @@ based on our findings, we proposed a hub-based delivery model: designated pickup
     team: "product space",
     goal: "increase excel feature adoption among students",
     description: "analyzed 500+ student surveys about excel to identify underutilized features. proposed embedded video tutorials and pre-built academic templates based on student use and learning preferences.",
+    mobileDescription: "helped microsoft understand how students really use excel and proposed tutorials and templates to make advanced features feel approachable.",
     caseStudy: `as part of a product growth contract through Product Space, i worked alongside a team of UCLA students to help Microsoft understand why college students weren't fully adopting Excel despite already using it. our driving question: how might we enhance the Microsoft Excel Student Ambassador Program to better engage and empower U.S. college students?
 
 project 1 — research & discovery
@@ -114,7 +127,10 @@ we conducted a full SWOT analysis of the existing Excel Student Ambassador Progr
 
 project 4 — final recommendations
 our core hypothesis: more guidance equals more success. we recommended three things: clearly define ambassador roles and success metrics (what), implement a structured year-long calendar aligned to student milestones like finals, career fairs, and club recruitment (when), and provide toolkits, training, and consistent mentorship (how). we also proposed specific events including an Excel 101 crash course, a data tournament, and an Excel + Copilot AI workshop, along with redesigned marketing templates for ambassadors to use.`,
+    mobileCaseStudy: "for microsoft excel, i mapped how students really use the tool today and designed a clearer ambassador program with tutorials, events, and templates to make advanced features less intimidating.",
     takeaway: "the problem wasn't that students didn't use Excel, it was that they didn't know how to use it well, and no one was teaching them in an engaging way. the ambassador program had the infrastructure but needed structure and support to actually work.",
+    mobileTakeaway: "the problem wasn't awareness, it was that no one was teaching students in an engaging way.",
+    mobileSkills: ["survey design", "user interviews", "affinity mapping", "SWOT analysis", "strategic thinking"],
     skills: {
       technical: ["survey design", "user interviews", "affinity mapping", "SWOT analysis", "market research", "go-to-market strategy", "program analysis"],
       behavioral: ["synthesizing qualitative and quantitative data", "strategic thinking", "cross-functional collaboration", "stakeholder communication", "presenting to stakeholders"]
@@ -132,6 +148,7 @@ our core hypothesis: more guidance equals more success. we recommended three thi
     team: "devx",
     goal: "build ucla's premiere product development community",
     description: "lead a 10-team executive board to run club operations for 70+ students. improved club health by refocusing mission to entrepreneurship and increasing active attendance from 40% to 85%.",
+    mobileDescription: "turned devx into a true product community, rebuilding culture and programming for 70+ students.",
     caseStudy: `i first joined DevX as a marketing manager my freshman year. the club was disorganized: no whole-club meetings, team meetings that constantly got cancelled, and no real support beyond pairing students into project teams. my sophomore year, the president saw potential in me and asked me to take on a product manager role, where i led my own project team to build BLink (see next card). but even then, i felt alone, devx wasn't checking in, wasn't providing resources, and wasn't living up to what it could be.
 
 when i became president, i knew exactly what needed to change because i had lived through what wasn't working.
@@ -147,7 +164,10 @@ a major issue was that people thought devx was a dev-only club because of its na
 
 project 4 — operations & funding
 i ran weekly board meetings across all functions (marketing, EVP, IVP, web dev, finance) and pushed to raise funds so PMs could deploy their projects without paying out of pocket. building a sustainable operational structure was one of the hardest and most rewarding parts of the role.`,
+    mobileCaseStudy: "as devx president, i went from feeling unsupported as a pm to rebuilding the club with real programming, check-ins, and resources for every member.",
     takeaway: "the best leaders fix the problems they once experienced. i knew what devx was missing because i had felt it firsthand. becoming president wasn't just a title, it was a chance to build the club i wished i'd had.",
+    mobileTakeaway: "the best leaders fix the problems they once experienced.",
+    mobileSkills: ["program management", "event planning", "leadership", "culture building", "public speaking"],
     skills: {
       technical: ["program management", "event planning", "recruiting", "marketing strategy", "product operations"],
       behavioral: ["leadership", "organizational culture building", "empathy-driven decision making", "cross-functional team management", "public speaking"]
@@ -165,6 +185,7 @@ i ran weekly board meetings across all functions (marketing, EVP, IVP, web dev, 
     team: "blink",
     goal: "centralize campus events for students",
     description: "lead 12-member cross-functional team of designers, engineers, and marketers to build an app for on-campus events. deploy real-time event data and push notifications to boost student participation among 5,000+ monthly active users.",
+    mobileDescription: "built blink, an app that puts every popup and campus event on one map so students never miss what's happening.",
     caseStudy: `blink was born out of a personal frustration. at UCLA, in the middle of los angeles, there are constantly events happening on campus, companies like lululemon, google, nike, and openai giving out free products to gain student traction, clubs selling boba and snacks from restaurants miles away, holiday bouquets and trinkets on bruin walk. but there was no way to know about any of it unless you happened to walk by or heard from a friend. i was missing things i genuinely wanted because i just didn't know they existed. so i built blink.
 
 project 1 — product vision & team building
@@ -178,7 +199,10 @@ we grew our user base largely through social media. our content team created vid
 
 project 4 — fundraising
 to fund the app's development and deployment, we ran fundraisers on campus including a dubai chocolate fundraiser that brought real energy and community around the project. raising money as a student org taught me a lot about scrappy resourcefulness.`,
+    mobileCaseStudy: "blink started as me missing popups and brand events on campus; i turned that frustration into an app and led a 12-person team to ship it to thousands of students.",
     takeaway: "blink was my first time truly owning a product from scratch. i felt every high and every setback personally because this was mine. no one handed me a problem statement or a roadmap. i found the problem, assembled the team, and built the solution. it taught me what it actually feels like to care about what you're building.",
+    mobileTakeaway: "blink taught me what it actually feels like to care about what you're building.",
+    mobileSkills: ["product management", "UX design", "figma", "user research", "product ownership"],
     skills: {
       technical: ["product management", "UX design", "figma", "user research", "social media growth", "content strategy", "app development coordination"],
       behavioral: ["product ownership", "leading cross-functional teams", "scrappy resourcefulness", "iterative thinking", "community building"]
@@ -203,6 +227,7 @@ to fund the app's development and deployment, we ran fundraisers on campus inclu
     team: "bruin tank",
     goal: "run socal's premiere college venture pitch competition",
     description: "led team using agile methodologies to manage event planning and ensure smooth execution. directed outreach to 200+ judges, sponsors, and student founders, increasing stakeholder participation.",
+    mobileDescription: "ran bruin tank, socal's largest student-led pitch competition, coordinating founders, judges, and sponsors end to end.",
     caseStudy: `as co-vice president of professional affairs for Sigma Eta Pi, UCLA's coed entrepreneurship fraternity, my role came with being co-executive director of Bruin Tank, SoCal's largest student-led pitch competition. 16 founders from SoCal schools pitch to a panel of 8 judges and venture capitalists. i was the full lead for the event.
 
 project 1 — outreach & sponsorships
@@ -213,7 +238,10 @@ i built the event website on Framer, created the application form on Tally, desi
 
 project 3 — leading through adversity
 midway through planning, i found myself navigating an unexpected leadership challenge that left me responsible for far more than originally scoped. rather than let it derail the event, i recalibrated quickly, redistributed the workload, and stepped into a more independent leadership role than i had anticipated. it was my first real test of leading under pressure with high stakes and tight timelines, and it taught me more about crisis management and adaptability than any planned experience could have.`,
+    mobileCaseStudy: "for bruin tank, i owned the full competition from sponsors to finalist selection, and kept things on track even when plans changed last minute.",
     takeaway: "no matter how much you plan ahead, things go wrong last minute. those are the moments that actually define you as a leader. i learned that i can hold things together under pressure, adapt fast, and deliver even when the conditions are far from ideal.",
+    mobileTakeaway: "i learned that i can hold things together under pressure and deliver even when conditions aren't ideal.",
+    mobileSkills: ["Figma", "Framer", "sponsorship decks", "event logistics", "crisis leadership"],
     skills: {
       technical: ["Figma", "Framer", "Tally", "sponsorship decks", "event logistics", "application management", "VC outreach"],
       behavioral: ["crisis leadership", "conflict navigation", "self-sufficiency", "working under pressure", "cross-functional coordination"]
@@ -231,6 +259,7 @@ midway through planning, i found myself navigating an unexpected leadership chal
     team: "campus ambassador",
     goal: "grow notion adoption on campus",
     description: "served as notion's campus representative at UCLA, promoting workspace tools and collaboration features to students and student organizations.",
+    mobileDescription: "brought notion to campus through events and content that showed students how to actually use it in their day to day.",
     caseStudy: `as a Notion Campus Ambassador at UCLA, i represent Notion within the student community, working directly with Notion's campus leadership team to bring the product to life on campus in an organic and student-facing way.
 
 project 1 — campus events & presentations
@@ -241,7 +270,10 @@ i created videos for Notion's social media aimed at showing students practical w
 
 project 3 — brand building on campus
 my goal as an ambassador has been to shift how students think about Notion, from a tool they've heard of to one they actually use. through events, content, and personal outreach, i've worked to make Notion feel relevant and accessible to the UCLA student community specifically.`,
+    mobileCaseStudy: "as a notion ambassador, i used booths, workshops, and content to show students how to make notion part of their actual routines, not just a tool they'd heard about.",
     takeaway: "being a campus ambassador taught me how to market a product authentically. the most effective moments weren't the formal presentations, they were the organic ones, like someone discovering my matcha guide on Notion and wanting to know more.",
+    mobileTakeaway: "the most effective marketing moments weren't the formal ones, they were the organic ones.",
+    mobileSkills: ["content creation", "event planning", "public speaking", "product marketing", "community building"],
     skills: {
       technical: ["content creation", "event planning", "public speaking", "product marketing", "Notion"],
       behavioral: ["community building", "organic marketing", "brand representation", "ambassador relations", "student outreach"]
