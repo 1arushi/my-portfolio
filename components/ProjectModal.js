@@ -89,7 +89,41 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
               display: "inline-block",
             }}
           >
-            {isExpanded ? "↘" : "↖"}
+            {isExpanded ? (
+              // Expand icon: arrows pointing away
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="5 9 5 5 9 5" />
+                <line x1="5" y1="5" x2="10" y2="10" />
+                <polyline points="15 19 19 19 19 15" />
+                <line x1="14" y1="14" x2="19" y2="19" />
+              </svg>
+            ) : (
+              // Collapse icon: arrows pointing toward center
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="9 5 5 5 5 9" />
+                <line x1="5" y1="5" x2="10" y2="10" />
+                <polyline points="19 15 19 19 15 19" />
+                <line x1="14" y1="14" x2="19" y2="19" />
+              </svg>
+            )}
           </span>
         </button>
         <button
