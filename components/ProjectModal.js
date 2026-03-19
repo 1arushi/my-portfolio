@@ -83,48 +83,10 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
             " w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-50 p-0 leading-none"
           }
         >
-          <span
-            style={{
-              transform: isExpanded ? "translate(0px, -2px)" : "translate(0px, 2px)",
-              display: "inline-block",
-            }}
-          >
-            {isExpanded ? (
-              // Expand icon: arrows pointing away
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="5 9 5 5 9 5" />
-                <line x1="5" y1="5" x2="10" y2="10" />
-                <polyline points="15 19 19 19 19 15" />
-                <line x1="14" y1="14" x2="19" y2="19" />
-              </svg>
-            ) : (
-              // Collapse icon: arrows pointing toward center
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="9 5 5 5 5 9" />
-                <line x1="5" y1="5" x2="10" y2="10" />
-                <polyline points="19 15 19 19 15 19" />
-                <line x1="14" y1="14" x2="19" y2="19" />
-              </svg>
-            )}
-          </span>
+          {isExpanded
+            ? <span style={{ transform: "translate(0px, 0px)", display: "inline-block" }}>↘</span>
+            : <span style={{ transform: "translate(0px, 2px)", display: "inline-block" }}>↖</span>
+          }
         </button>
         <button
           type="button"
