@@ -7,6 +7,7 @@ import { BarChart, Bar, XAxis, YAxis, Cell, PieChart, Pie, Tooltip, ResponsiveCo
 export default function ProjectModal({ project, isOpen, onClose, nextProjects = [], onSelectProject, projects: allProjects = [] }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [imageModal, setImageModal] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -18,6 +19,15 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(typeof window !== "undefined" && window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   if (!isOpen || !project) return null;
 
@@ -73,21 +83,38 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
         }
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          type="button"
-          onClick={() => setIsExpanded(!isExpanded)}
-          className={
-            (isExpanded
-              ? "fixed top-6 left-6"
-              : "absolute top-4 left-4") +
-            " w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-50 p-0 leading-none"
-          }
-        >
-          {isExpanded
-            ? <span style={{ transform: "translate(0px, 0px)", display: "inline-block" }}>{"↘\uFE0E"}</span>
-            : <span style={{ transform: "translate(0px, 2px)", display: "inline-block" }}>{"↖\uFE0E"}</span>
-          }
-        </button>
+        {isMobile ? (
+          <button
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={
+              (isExpanded ? "fixed top-6 left-6" : "absolute top-4 left-4") +
+              " w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-50 p-0 leading-none"
+            }
+            style={{ fontFamily: "Arial, sans-serif" }}
+          >
+            {isExpanded ? (
+              <span style={{ transform: "translate(0px, 0px)", display: "inline-block", fontSize: "14px" }}>{"↘\uFE0E"}</span>
+            ) : (
+              <span style={{ transform: "translate(0px, 2px)", display: "inline-block", fontSize: "14px" }}>{"↖\uFE0E"}</span>
+            )}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={
+              (isExpanded
+                ? "fixed top-6 left-6"
+                : "absolute top-4 left-4") +
+              " w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-50 p-0 leading-none"
+            }
+          >
+            <span style={{ transform: "translate(0px, 2px)", display: "inline-block" }}>
+              {isExpanded ? "↘" : "↖"}
+            </span>
+          </button>
+        )}
         <button
           type="button"
           onClick={onClose}
