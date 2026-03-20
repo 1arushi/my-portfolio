@@ -95,27 +95,15 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
         >
           {isMobile ? (
             isExpanded ? (
-              <span
-                style={{
-                  fontFamily: "Arial, sans-serif",
-                  fontSize: "14px",
-                  display: "inline-block",
-                  transform: "translate(0px, 0px)",
-                }}
-              >
-                ↘
-              </span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="7" x2="21" y2="21" />
+                <polyline points="21 14 21 21 14 21" />
+              </svg>
             ) : (
-              <span
-                style={{
-                  fontFamily: "Arial, sans-serif",
-                  fontSize: "14px",
-                  display: "inline-block",
-                  transform: "translate(0px, 2px)",
-                }}
-              >
-                ↖
-              </span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="17" y1="17" x2="3" y2="3" />
+                <polyline points="3 10 3 3 10 3" />
+              </svg>
             )
           ) : (
             <span style={{ transform: "translate(0px, 2px)", display: "inline-block" }}>
@@ -134,7 +122,14 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
           }
           aria-label="Close"
         >
-          ×
+          {isMobile ? (
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          ) : (
+            "×"
+          )}
         </button>
         <div className={isExpanded ? "p-12 overflow-y-auto" : "p-12 max-h-[60vh] overflow-y-auto"}>
           {/* Company Name */}
