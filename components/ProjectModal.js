@@ -84,8 +84,8 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
           }
         >
           {isExpanded
-            ? <span style={{ transform: "translate(0px, 0px)", display: "inline-block" }}>↘</span>
-            : <span style={{ transform: "translate(0px, 2px)", display: "inline-block" }}>↖</span>
+            ? <span style={{ transform: "translate(0px, 0px)", display: "inline-block" }}>{"↘\uFE0E"}</span>
+            : <span style={{ transform: "translate(0px, 2px)", display: "inline-block" }}>{"↖\uFE0E"}</span>
           }
         </button>
         <button

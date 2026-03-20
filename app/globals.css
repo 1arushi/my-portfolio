@@ -83,6 +83,58 @@ body {
     max-width: 100%;
     width: 100%;
   }
+
+  /* Creative page: avoid card squish on mobile by stacking and preserving ratio */
+  .grid.grid-cols-2,
+  .grid.grid-cols-3,
+  .grid.grid-cols-4 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* Creative sections use fixed inline heights; let cards grow naturally on mobile */
+  div[style*="height: 560px"],
+  div[style*="height: 276px"] {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* Bring card layers into normal flow so stacked cards can expand */
+  .absolute.inset-0.z-10.flex.flex-col.gap-2,
+  .absolute.inset-0.z-10.grid.grid-cols-2.gap-2.h-full,
+  .absolute.inset-0.z-10 {
+    position: static !important;
+    inset: auto !important;
+    height: auto !important;
+  }
+
+  /* Matcha top/bottom groups had inline flex: 1; remove on mobile */
+  .absolute.inset-0.z-10.flex.flex-col.gap-2 > .grid {
+    flex: initial !important;
+  }
+
+  /* Keep card faces from being squished */
+  .relative.cursor-pointer.rounded-2xl {
+    aspect-ratio: 4 / 3;
+    height: auto !important;
+    min-height: 0 !important;
+    width: 100%;
+  }
+
+  /* Expanded/flipped text must stay inside the white card */
+  .absolute.inset-0.bg-white.rounded-2xl.p-5.flex.items-center.border.border-gray-100,
+  .absolute.inset-0.bg-white.rounded-2xl.p-5.flex.items-center.justify-center.border.border-gray-100 {
+    overflow: hidden !important;
+  }
+
+  .absolute.inset-0.bg-white.rounded-2xl.p-5.flex.items-center.border.border-gray-100 p,
+  .absolute.inset-0.bg-white.rounded-2xl.p-5.flex.items-center.border.border-gray-100 div,
+  .absolute.inset-0.bg-white.rounded-2xl.p-5.flex.items-center.justify-center.border.border-gray-100 p,
+  .absolute.inset-0.bg-white.rounded-2xl.p-5.flex.items-center.justify-center.border.border-gray-100 div {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    max-width: 100%;
+  }
 }
 
 @keyframes fadeIn {
