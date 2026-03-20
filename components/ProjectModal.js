@@ -83,38 +83,46 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
         }
         onClick={(e) => e.stopPropagation()}
       >
-        {isMobile ? (
-          <button
-            type="button"
-            onClick={() => setIsExpanded(!isExpanded)}
-            className={
-              (isExpanded ? "fixed top-6 left-6" : "absolute top-4 left-4") +
-              " w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-50 p-0 leading-none"
-            }
-            style={{ fontFamily: "Arial, sans-serif" }}
-          >
-            {isExpanded ? (
-              <span style={{ transform: "translate(0px, 0px)", display: "inline-block", fontSize: "14px" }}>{"↘\uFE0E"}</span>
+        <button
+          type="button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className={
+            (isExpanded
+              ? "fixed top-6 left-6"
+              : "absolute top-4 left-4") +
+            " w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-50 p-0 leading-none"
+          }
+        >
+          {isMobile ? (
+            isExpanded ? (
+              <span
+                style={{
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "14px",
+                  display: "inline-block",
+                  transform: "translate(0px, 0px)",
+                }}
+              >
+                ↘
+              </span>
             ) : (
-              <span style={{ transform: "translate(0px, 2px)", display: "inline-block", fontSize: "14px" }}>{"↖\uFE0E"}</span>
-            )}
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setIsExpanded(!isExpanded)}
-            className={
-              (isExpanded
-                ? "fixed top-6 left-6"
-                : "absolute top-4 left-4") +
-              " w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center text-gray-500 z-50 p-0 leading-none"
-            }
-          >
+              <span
+                style={{
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "14px",
+                  display: "inline-block",
+                  transform: "translate(0px, 2px)",
+                }}
+              >
+                ↖
+              </span>
+            )
+          ) : (
             <span style={{ transform: "translate(0px, 2px)", display: "inline-block" }}>
               {isExpanded ? "↘" : "↖"}
             </span>
-          </button>
-        )}
+          )}
+        </button>
         <button
           type="button"
           onClick={onClose}
