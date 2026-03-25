@@ -137,28 +137,23 @@ export default function ProjectModal({ project, isOpen, onClose, nextProjects = 
             {project.name}
           </h2>
 
-          {/* Timeline, Role, Org, Team — pills only (no labels) */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.timeline && (
-              <span className="bg-[#D9D9D9]/50 rounded-full px-3 py-1 text-xs text-gray-700 lowercase">
-                {project.timeline}
-              </span>
-            )}
-            {project.role && (
-              <span className="bg-[#D9D9D9]/50 rounded-full px-3 py-1 text-xs text-gray-700 lowercase">
-                {project.role}
-              </span>
-            )}
-            {project.org && (
-              <span className="bg-[#D9D9D9]/50 rounded-full px-3 py-1 text-xs text-gray-700 lowercase">
-                {project.org}
-              </span>
-            )}
-            {project.team && (project.id === "uber" || project.id === "microsoft") && (
-              <span className="bg-[#D9D9D9]/50 rounded-full px-3 py-1 text-xs text-gray-700 lowercase">
-                {project.team}
-              </span>
-            )}
+          <div className="grid grid-cols-4 gap-8 mb-8">
+            <div>
+              <p className="text-sm text-[#AEAEAE] mb-1 lowercase">timeline</p>
+              <p className="text-sm text-[#717171] font-medium lowercase">{project.timeline}</p>
+            </div>
+            <div>
+              <p className="text-sm text-[#AEAEAE] mb-1 lowercase">role</p>
+              <p className="text-sm text-[#717171] font-medium lowercase">{project.role}</p>
+            </div>
+            <div>
+              <p className="text-sm text-[#AEAEAE] mb-1 lowercase">team</p>
+              <p className="text-sm text-[#717171] font-medium lowercase">{project.team}</p>
+            </div>
+            <div>
+              <p className="text-sm text-[#AEAEAE] mb-1 lowercase">org</p>
+              <p className="text-sm text-[#717171] font-medium lowercase">{project.org}</p>
+            </div>
           </div>
 
           {/* Divider */}
